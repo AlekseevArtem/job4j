@@ -9,6 +9,7 @@ public class CheckPrimeNumber {
                 prime = false;
             }
         }
+        if (finish == 1) prime = false;
         return prime;
     }
 }
