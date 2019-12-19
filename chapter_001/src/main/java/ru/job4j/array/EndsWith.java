@@ -15,6 +15,7 @@ public class EndsWith {
         for ( ; nump > 0 ;numw--, nump--) {
             if (word[numw] != post[nump]) {
                 result = false;
+                break;
             }
         }
         return result;
