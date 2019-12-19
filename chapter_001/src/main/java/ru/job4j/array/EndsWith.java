@@ -1,5 +1,11 @@
 package ru.job4j.array;
 
+/**
+ * Class Проверяет равны ли последние ячейки массива с ячейками второго массива.
+ * @author AlekseevArtem (tema9991@mail.ru)
+ * @since  19.12.2019
+ * @version  1
+ */
 public class EndsWith {
 
     public static boolean endsWith(char[] word, char[] post) {
