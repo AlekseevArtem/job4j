@@ -8,13 +8,23 @@ import static org.junit.Assert.assertThat;
 
 public class CounterTest {
     @Test
-    public void whenSumEvenNumbersFromOneToTenThenThirty() {
+    public void whenSumEvenNumbersFromZeroToTenThenThirty() {
         int result = Counter.add(0, 10);
         assertThat(result, is(30));
     }
     @Test
-    public void whenSumEvenNumbersFromOneToTwentyThenHundredten() {
+    public void whenSumEvenNumbersFromZeroToTwentyThenHundredten() {
         int result = Counter.add(0, 20);
         assertThat(result, is(110));
+    }
+    @Test
+    public void whenSumEvenNumbersFromOneToTwentyThenHundredten() {
+        int result = Counter.add(1, 20);
+        assertThat(result, is(110));
+    }
+    @Test
+    public void whenSumEvenNumbersFromOneToTenThenThirty() {
+        int result = Counter.add(1, 10);
+        assertThat(result, is(30));
     }
 }
