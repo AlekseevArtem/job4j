@@ -13,6 +13,7 @@ public class ArrayChar {
         for ( int num = 0 ; num < pref.length ;num++ ) {
             if (word[num] != pref[num]) {
                 result = false;
+                break;
             }
         }
         return result;
