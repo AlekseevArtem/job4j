@@ -3,7 +3,7 @@ package ru.job4j.array;
 /**
  * Class Выдает из массива чисел минимальное значение.
  * @author AlekseevArtem (tema9991@mail.ru)
- * @since  18.12.2019
+ * @since  20.12.2019
  * @version  1
  */
 public class Min {
