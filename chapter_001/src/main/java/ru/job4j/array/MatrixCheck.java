@@ -11,7 +11,7 @@ public class MatrixCheck {
         boolean result = false;
         int i = 0;
         int j = 0;
-        for ( ; i < board.length; i++ , j++) {
+        for ( ; i < board.length; i++, j++) {
             if (monoHorizontal(board, i) || monoVertical(board, j)) {
                 result = true;
                 break;
@@ -20,9 +20,9 @@ public class MatrixCheck {
         return result;
     }
 
-    public static boolean monoHorizontal(char[][] board, int index){
+    public static boolean monoHorizontal(char[][] board, int index) {
         boolean result = true;
-        for (int j = 0 ; j < board.length; j++ ) {
+        for (int j = 0; j < board.length; j++) {
             if (board[index][j] != 'X') {
                 result = false;
                 break;
@@ -34,8 +34,8 @@ public class MatrixCheck {
 
     public static boolean monoVertical(char[][] board, int index) {
         boolean result = true;
-        for (int i = 0; i < board.length; i++) {
-            if (board[i][index] != 'X') {
+        for (char[] chars : board) {
+            if (chars[index] != 'X') {
                 result = false;
                 break;
             }

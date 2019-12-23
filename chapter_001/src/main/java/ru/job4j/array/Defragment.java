@@ -14,8 +14,8 @@ public class Defragment {
             if (cell == null) {
                 int ii = index;
                 minusonenull++;
-                while ((array[ii] == null) && (ii < array.length - minusonenull)){
-                    array[ii] = array [ii + 1];
+                while ((array[ii] == null) && (ii < array.length - minusonenull)) {
+                    array[ii] = array[ii + 1];
                     array[ii + 1] = null;
                     ii++;
                 }
@@ -29,8 +29,8 @@ public class Defragment {
         String[] input = {"I", null, "wanna", null, "be", null, "compressed"};
         String[] compressed = compress(input);
         System.out.println();
-        for (int index = 0; index < compressed.length; index++) {
-            System.out.print(compressed[index] + " ");
+        for (String s : compressed) {
+            System.out.print(s + " ");
         }
     }
 }

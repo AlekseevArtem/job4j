@@ -3,7 +3,7 @@ public class Multiple {
         int n, m;
 
         for (n = 1, m = 1; n < 10; n++) {
-            System.out.println(m + " * " + n + " = " + m*n);
+            System.out.println(m + " * " + n + " = " + m * n);
         }
     }
 }
