@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class MatrixCheckTest {
+public class SokobanCheckTest {
     @Test
     public void whenDataMonoByTrueThenTrue() {
         char[][] input = {
@@ -14,7 +14,7 @@ public class MatrixCheckTest {
                 {' ', ' ', 'X', ' ', ' '},
                 {' ', ' ', 'X', ' ', ' '},
         };
-        boolean result = MatrixCheck.isWin(input);
+        boolean result = SokobanCheck.isWin(input);
         assertThat(result, is(true));
     }
 
@@ -27,7 +27,7 @@ public class MatrixCheckTest {
                 {' ', ' ', 'X', ' ', ' '},
                 {' ', ' ', 'X', ' ', ' '},
         };
-        boolean result = MatrixCheck.isWin(input);
+        boolean result = SokobanCheck.isWin(input);
         assertThat(result, is(false));
     }
 
@@ -40,7 +40,7 @@ public class MatrixCheckTest {
                 {' ', ' ', 'X', ' ', ' '},
                 {' ', ' ', 'X', ' ', ' '},
         };
-        boolean result = MatrixCheck.isWin(input);
+        boolean result = SokobanCheck.isWin(input);
         assertThat(result, is(true));
     }
 
@@ -53,7 +53,7 @@ public class MatrixCheckTest {
                 {' ', 'X', 'X', 'X', 'X'},
                 {'X', 'X', 'X', 'X', 'X'},
         };
-        boolean result = MatrixCheck.isWin(input);
+        boolean result = SokobanCheck.isWin(input);
         assertThat(result, is(true));
     }
 
@@ -66,7 +66,7 @@ public class MatrixCheckTest {
                 {' ', 'X', 'X', 'X', 'X'},
                 {'X', ' ', 'X', 'X', 'X'},
         };
-        boolean result = MatrixCheck.isWin(input);
+        boolean result = SokobanCheck.isWin(input);
         assertThat(result, is(false));
     }
 }

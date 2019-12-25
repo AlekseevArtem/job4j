@@ -6,7 +6,7 @@ package ru.job4j.array;
  * @since  23.12.2019
  * @version  1
  */
-public class MatrixCheck {
+public class SokobanCheck {
     public static boolean isWin(char[][] board) {
         boolean result = false;
         int i = 0;

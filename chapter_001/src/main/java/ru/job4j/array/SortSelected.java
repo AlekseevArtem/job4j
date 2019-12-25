@@ -11,8 +11,7 @@ public class SortSelected {
     public static int[] sort(int[] data) {
         for (int start = 0; start < data.length; start++) {
             int min = MinDiapason.findMin(data, start, data.length);
-            int index = FindLoop.indeinrangeOf(data, min, start, data.length);
-
+            int index = FindLoop.indexRange(data, min, start, data.length);
             if (index != start) {
             int temporary = data[start];
             data[start] = data[index];

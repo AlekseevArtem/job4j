@@ -7,14 +7,15 @@ package ru.job4j.array;
  * @version  1
  */
 public class Defragment {
+
     public static String[] compress(String[] array) {
-        int minusonenull = 0; //Чтобы не переносить null'ы в конец которые уже перенеслись в конец
+        int num = 0;
         for (int index = 0; index < array.length; index++) {
             String cell = array[index];
             if (cell == null) {
                 int ii = index;
-                minusonenull++;
-                while ((array[ii] == null) && (ii < array.length - minusonenull)) {
+                num++;
+                while ((array[ii] == null) && (ii < array.length - num)) {
                     array[ii] = array[ii + 1];
                     array[ii + 1] = null;
                     ii++;
