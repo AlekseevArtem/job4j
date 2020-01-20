@@ -42,6 +42,17 @@ public class MergeTest {
     }
 
     @Test
+    public void whenLeftLess2() {
+        Merge algo = new Merge();
+        int[] expect = {1, 2, 3, 4, 5};
+        int[] result = algo.merge(
+                new int[] {3, 4, 5},
+                new int[] {1, 2}
+        );
+        assertThat(result, is(expect));
+    }
+
+    @Test
     public void whenLeftGreat() {
         Merge algo = new Merge();
         int[] expect = {1, 2, 3, 4, 4};
@@ -81,6 +92,17 @@ public class MergeTest {
         int[] result = algo.merge(
                 new int[] {3, 4},
                 new int[] {1, 2, 3}
+        );
+        assertThat(result, is(expect));
+    }
+
+    @Test
+    public void whenRightLess2() {
+        Merge algo = new Merge();
+        int[] expect = {1, 1, 2, 2, 3};
+        int[] result = algo.merge(
+                new int[] {1, 1},
+                new int[] {2, 2, 3}
         );
         assertThat(result, is(expect));
     }
