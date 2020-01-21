@@ -6,7 +6,13 @@ public class Animal {
         System.out.println("Animal");
     }
 
+    public Animal(String name) {
+        super();
+        System.out.println("Animal");
+    }
+
     public static void main(String[] args) {
-        Tiger tim = new Tiger();
+        Animal tim = new Animal();
+        Tiger john = new Tiger();
     }
 }
