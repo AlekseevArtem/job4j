@@ -12,5 +12,5 @@ public class Doctor extends Profession {
         return accessToAnesthesia;
     }
 
-    public Diagnose heal(Patient patient) {}
+//    public Diagnose heal(Patient patient) {}
 }
