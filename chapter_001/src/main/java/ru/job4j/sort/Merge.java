@@ -7,14 +7,14 @@ public class Merge {
     public int[] merge(int[] left, int[] right) {
         int[] rsl = new int[left.length + right.length];
         int il = 0, ir = 0;
-        while (ir + il < rsl.length && il <= left.length && ir <= right.length) {
+        while (ir + il < rsl.length) {
             if (il == left.length) {
                 rsl[ir + il] = right[ir];
                 ir++;
             } else if (ir == right.length) {
                 rsl[ir + il] = left[il];
                 il++;
-            } else if (left[il] < right[ir] && left.length - 1 >= il) {
+            } else if (left[il] < right[ir]) {
                 rsl[ir + il] = left[il];
                 il++;
             } else {
