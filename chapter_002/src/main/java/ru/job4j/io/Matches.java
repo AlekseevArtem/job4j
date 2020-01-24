@@ -12,12 +12,8 @@ public class Matches {
         System.out.print("Первый игрок, вы ходите первым. Напишите количество спичек которое вы берёте: ");
         while (run) {
             int select = Integer.parseInt(input.nextLine());
-            if (select == 3 && matches >= 3) {
-                matches -= 3;
-            } else if (select == 2 && matches >= 2) {
-                matches -= 2;
-            } else if (select == 1) {
-                matches -= 1;
+            if (select <= 3 && select > 0) {
+                matches -= select;
             } else {
                 System.out.println("Игрок " + (turn % 2 + 1)  + " вы не можете взять столько спичек. Спичек осталось " + matches);
                 continue;
