@@ -59,7 +59,7 @@ public class Tracker {
      * @param key id, которое ищем среди массива объектов.
      */
     public Item findById(String key) {
-        Item result = new Item("result");
+        Item result = new Item(null);
         for (int index = 0; index < position; index++) {
             if (items[index].getId().equals(key)) {
                 result = items[index];
