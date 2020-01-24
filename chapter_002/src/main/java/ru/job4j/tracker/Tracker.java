@@ -1,7 +1,5 @@
 package ru.job4j.tracker;
 
-import ru.job4j.pojo.Book;
-
 import java.util.Arrays;
 import java.util.Random;
 
@@ -35,15 +33,7 @@ public class Tracker {
      * @return Массив без null елементов.
      */
     public Item[] findAll()  {
-        Item[] itemsWithoutNull = new Item[position];
-        int size = 0;
-        for (int index = 0; index < position; index++) {
-            if (items[index].getName() != null) {
-                itemsWithoutNull[size++] = items[index];
-            }
-        }
-        itemsWithoutNull = Arrays.copyOf(itemsWithoutNull, size);
-        return itemsWithoutNull;
+        return Arrays.copyOf(items, position);
     }
 
     /**
@@ -69,9 +59,9 @@ public class Tracker {
      * @param key id, которое ищем среди массива объектов.
      */
     public Item findById(String key) {
-        Item result = new Item();
+        Item result = new Item("result");
         for (int index = 0; index < position; index++) {
-            if (items[index].getId() != null && items[index].getId().equals(key)) {
+            if (items[index].getId().equals(key)) {
                 result = items[index];
                 break;
             }

@@ -20,13 +20,13 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item1 = new Item("test1");
         Item item2 = new Item("test2");
-        Item item3 = new Item();
+        Item item3 = new Item("test3");
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
         tracker.add(item2);
         tracker.add(item1);
-        Item[] expect = new Item[] {item1, item2, item2, item1};
+        Item[] expect = new Item[] {item1, item2, item3, item2, item1};
         assertThat(tracker.findAll(), is(expect));
     }
 
@@ -35,7 +35,7 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item1 = new Item("test1");
         Item item2 = new Item("test2");
-        Item item3 = new Item();
+        Item item3 = new Item("test3");
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
