@@ -28,7 +28,6 @@ public class Tracker {
         return item;
     }
 
-
     /**
      * Метод findAll возвращает копию массива this.items без null элементов
      * @return Массив без null елементов.
@@ -47,6 +46,19 @@ public class Tracker {
         newItem.setId(items[indexOfId].getId());
         this.items[indexOfId] = newItem;
         return newItem;
+    }
+
+    /**
+     * Метод реализующий удаление заявки в хранилище
+     * @param id по нему будем искать позицию Item, в которой он записан.
+     */
+    public void delete(String id) {
+        int distPos = indexOf(id);
+        int size = position - distPos;
+        this.items[distPos] = null;
+        System.arraycopy(items, distPos + 1, this.items, distPos, size);
+        this.items[position] = null;
+        this.position--;
     }
 
     /**
