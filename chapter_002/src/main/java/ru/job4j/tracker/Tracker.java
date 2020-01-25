@@ -38,6 +38,33 @@ public class Tracker {
     }
 
     /**
+     * Метод реализующий изменение имени у Item в хранилище
+     * @param id по нему будем искать позицию Item, в которой он записан.
+     * @param newItem это новый Item котором заменим id на старое. И заменим старый Item на newItem.
+     */
+    public Item replace(String id, Item newItem) {
+        int indexOfId = indexOf(id);
+        newItem.setId(items[indexOfId].getId());
+        this.items[indexOfId] = newItem;
+        return newItem;
+    }
+
+    /**
+     * Метод возвращает index по id
+     * @param id по нему будем искать позицию Item в котором он записан.
+     */
+    private int indexOf(String id) {
+        int rsl = 0;
+        for (int index = 0; index < position; index++) {
+            if (items[index].getId().equals(id)) {
+                rsl = index;
+                break;
+            }
+        }
+        return rsl;
+    }
+
+    /**
      * Метод findByName проверяет в цикле все элементы массива this.items, сравнивая name c key. Все совпадающие элементы собирает в массив.
      * @param key name, которое ищем среди массива объектов.
      * @return Массив, в который записаны все элементы с name key.
@@ -57,17 +84,10 @@ public class Tracker {
     /**
      * Метод findById проверяет в цикле все элементы массива this.items, сравнивая id c key. И выдает этот элемент.
      * @return Элемент, id которого совпадает с тем который мы ищем.
-     * @param key id, которое ищем среди массива объектов.
+     * @param id, id которое ищем среди массива объектов.
      */
-    public Item findById(String key) {
-        Item result = null;
-        for (int index = 0; index < position; index++) {
-            if (items[index].getId().equals(key)) {
-                result = items[index];
-                break;
-            }
-        }
-        return result;
+    public Item findById(String id) {
+        return items[indexOf(id)];
     }
 
     /**
