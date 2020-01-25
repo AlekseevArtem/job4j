@@ -29,6 +29,17 @@ public class Tracker {
     }
 
     /**
+     * Метод реализующий удаление заявки в хранилище
+     * @param index порядковый номер Item который будет удален
+     */
+    public void delete(int index) {
+        this.position--;
+        for (; index - 1 < position; index++) {
+            items[index - 1] = items[index];
+        }
+    }
+
+    /**
      * Метод findAll возвращает копию массива this.items без null элементов
      * @return Массив без null елементов.
      */
