@@ -66,7 +66,7 @@ public class Tracker {
      * @param id по нему будем искать позицию Item в котором он записан.
      */
     private int indexOf(String id) {
-        int rsl = 0;
+        int rsl = -1;
         for (int index = 0; index < position; index++) {
             if (items[index].getId().equals(id)) {
                 rsl = index;
