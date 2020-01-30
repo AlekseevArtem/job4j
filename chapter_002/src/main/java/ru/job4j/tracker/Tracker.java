@@ -41,24 +41,33 @@ public class Tracker {
      * @param id по нему будем искать позицию Item, в которой он записан.
      * @param newItem это новый Item котором заменим id на старое. И заменим старый Item на newItem.
      */
-    public Item replace(String id, Item newItem) {
-        int indexOfId = indexOf(id);
-        newItem.setId(items[indexOfId].getId());
-        this.items[indexOfId] = newItem;
-        return newItem;
+    public boolean replace(String id, Item newItem) {
+        boolean result = false;
+        if (indexOf(id) != -1) {
+            int indexOfId = indexOf(id);
+            newItem.setId(items[indexOfId].getId());
+            this.items[indexOfId] = newItem;
+            result = true;
+        }
+        return result;
     }
 
     /**
      * Метод реализующий удаление заявки в хранилище
      * @param id по нему будем искать позицию Item, в которой он записан.
      */
-    public void delete(String id) {
+    public boolean delete(String id) {
+        boolean result = false;
         int distPos = indexOf(id);
-        int size = position - distPos;
-        this.items[distPos] = null;
-        System.arraycopy(items, distPos + 1, this.items, distPos, size);
-        this.items[position] = null;
-        this.position--;
+        if (distPos != -1) {
+            int size = position - distPos;
+            this.items[distPos] = null;
+            System.arraycopy(items, distPos + 1, this.items, distPos, size);
+            this.items[position] = null;
+            this.position--;
+            result = true;
+        }
+        return result;
     }
 
     /**
@@ -99,7 +108,11 @@ public class Tracker {
      * @param id, id которое ищем среди массива объектов.
      */
     public Item findById(String id) {
-        return items[indexOf(id)];
+        if (indexOf(id) < 0) {
+            return null;
+        } else {
+            return items[indexOf(id)];
+        }
     }
 
     /**
