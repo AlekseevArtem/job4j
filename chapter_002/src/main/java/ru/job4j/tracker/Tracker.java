@@ -43,10 +43,10 @@ public class Tracker {
      */
     public boolean replace(String id, Item newItem) {
         boolean result = false;
-        if (indexOf(id) != -1) {
-            int indexOfId = indexOf(id);
-            newItem.setId(items[indexOfId].getId());
-            this.items[indexOfId] = newItem;
+        int index = indexOf(id);
+        if (index != -1) {
+            newItem.setId(items[index].getId());
+            this.items[index] = newItem;
             result = true;
         }
         return result;
@@ -108,11 +108,8 @@ public class Tracker {
      * @param id, id которое ищем среди массива объектов.
      */
     public Item findById(String id) {
-        if (indexOf(id) < 0) {
-            return null;
-        } else {
-            return items[indexOf(id)];
-        }
+        int index = indexOf(id);
+        return index < 0 ? null : items[index];
     }
 
     /**
