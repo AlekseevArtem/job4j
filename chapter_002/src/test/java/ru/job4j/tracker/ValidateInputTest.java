@@ -24,19 +24,23 @@ public class ValidateInputTest {
 
     @Test
     public void whenInvalidInput() {
-        String[] data = {"one", "1"};
-        ValidateInput input = new ValidateStubInput(data);
-        input.askInt("Enter", 3);
+        ValidateInput input = new ValidateInput(
+                new StubInput(new String[]{"one", "1"})
+        );
+        input.askInt("Enter");
         assertThat(
                 out.toString(),
                 is(String.format("Please enter validate data again.%n"))
         );
     }
-
+    Input input = new ConsoleInput();
+    Input validate = new ValidateInput(input);
     @Test
     public void whenInvalidMaxTwoTimes() {
-        ValidateInput input = new ValidateStubInput(new String[] {"7", "8", "3"});
-        input.askInt("Enter", 6);
+        ValidateInput input = new ValidateInput(
+                new StubInput(new String[]{"7", "8", "3"})
+        );
+        input.askInt("Enter", 4);
         assertThat(
                 out.toString(),
                 is(String.format("Please select key from menu.%n" + "Please select key from menu.%n"))
@@ -45,7 +49,9 @@ public class ValidateInputTest {
 
     @Test
     public void whenInvalidBoth() {
-        ValidateInput input = new ValidateStubInput(new String[] {"7", "tee", "3"});
+        ValidateInput input = new ValidateInput(
+                new StubInput(new String[]{"7", "tee", "3"})
+        );
         input.askInt("Enter", 6);
         assertThat(
                 out.toString(),
