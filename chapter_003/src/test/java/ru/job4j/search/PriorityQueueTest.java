@@ -18,5 +18,9 @@ public class PriorityQueueTest {
         queue.put(new Task("middle", 3));
         Task result = queue.take();
         assertThat(result.getDesc(), is("urgent"));
+        Task result1 = queue.take();
+        assertThat(result1.getDesc(), is("middle"));
+        Task result2 = queue.take();
+        assertThat(result2.getDesc(), is("low"));
     }
 }
