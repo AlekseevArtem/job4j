@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -11,12 +12,7 @@ public class Tracker {
     /**
      * Массив для хранение заявок.
      */
-    private final Item[] items = new Item[100];
-
-    /**
-     * Указатель ячейки для новой заявки.
-     */
-    private int position = 0;
+    private final ArrayList<Item> items = new ArrayList<>();
 
     /**
      * Метод реализующий добавление заявки в хранилище
@@ -24,16 +20,16 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        items.add(item);
         return item;
     }
 
     /**
-     * Метод findAll возвращает копию массива this.items без null элементов
-     * @return Массив без null елементов.
+     * Метод findAll возвращает коллекцию Items
+     * @return коллекция.
      */
-    public Item[] findAll()  {
-        return Arrays.copyOf(items, position);
+    public ArrayList<Item> findAll()  {
+        return items;
     }
 
     /**
@@ -44,9 +40,9 @@ public class Tracker {
     public boolean replace(String id, Item newItem) {
         boolean result = false;
         int index = indexOf(id);
+        newItem.setId(items.get(index).getId());
         if (index != -1) {
-            newItem.setId(items[index].getId());
-            this.items[index] = newItem;
+            items.set(index, newItem);
             result = true;
         }
         return result;
@@ -57,17 +53,8 @@ public class Tracker {
      * @param id по нему будем искать позицию Item, в которой он записан.
      */
     public boolean delete(String id) {
-        boolean result = false;
-        int distPos = indexOf(id);
-        if (distPos != -1) {
-            int size = position - distPos;
-            this.items[distPos] = null;
-            System.arraycopy(items, distPos + 1, this.items, distPos, size);
-            this.items[position] = null;
-            this.position--;
-            result = true;
-        }
-        return result;
+        Item item = findById(id);
+            return items.remove(item);
     }
 
     /**
@@ -76,9 +63,9 @@ public class Tracker {
      */
     private int indexOf(String id) {
         int rsl = -1;
-        for (int index = 0; index < position; index++) {
-            if (items[index].getId().equals(id)) {
-                rsl = index;
+        for (Item item : items) {
+            if (item.getId().equals(id)) {
+                rsl = items.indexOf(item);
                 break;
             }
         }
@@ -90,15 +77,13 @@ public class Tracker {
      * @param key name, которое ищем среди массива объектов.
      * @return Массив, в который записаны все элементы с name key.
      */
-    public Item[] findByName(String key) {
-        Item[] itemsWithSameName = new Item[position];
-        int size = 0;
-        for (int index = 0; index < position; index++) {
-            if (items[index].getName() != null && items[index].getName().equals(key)) {
-                itemsWithSameName[size++] = items[index];
+    public ArrayList<Item> findByName(String key) {
+        ArrayList<Item> itemsWithSameName = new ArrayList<>();
+        for (Item item : items) {
+            if (item.getName().equals(key)) {
+                itemsWithSameName.add(item);
             }
         }
-        itemsWithSameName = Arrays.copyOf(itemsWithSameName, size);
         return itemsWithSameName;
     }
 
@@ -109,7 +94,7 @@ public class Tracker {
      */
     public Item findById(String id) {
         int index = indexOf(id);
-        return index < 0 ? null : items[index];
+        return index < 0 ? null : items.get(index);
     }
 
     /**
