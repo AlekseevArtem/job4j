@@ -1,10 +1,11 @@
 package ru.job4j.collection;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class UsageMap {
     public static void main(String[] args) {
-        HashMap<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         map.put("parsentev@yandex.ru", "Petr Arsentev");
         map.put("parsentev@yandex.ru", "Petr Arsentev Sergeevich");
         map.put("tema9991@mail.ru", "Artem Alekseev");
