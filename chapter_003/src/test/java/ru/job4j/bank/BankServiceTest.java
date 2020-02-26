@@ -3,6 +3,7 @@ package ru.job4j.bank;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
@@ -23,6 +24,17 @@ public class BankServiceTest {
         bank.addUser(user);
         bank.addAccount(user.getPassport(), new Account("5546", 150.0));
         Assert.assertEquals(bank.findByRequisite("3434", "5546").getBalance(), 150, 0.01);
+    }
+
+    @Test
+    public void findByWrongPassport() {
+        User user = new User("3434", "Petr Arsentev");
+        BankService bank = new BankService();
+        bank.addUser(user);
+        try {
+            bank.findByRequisite("5555", "5555");
+        } catch (NullPointerException ignored) {
+        }
     }
 
     @Test

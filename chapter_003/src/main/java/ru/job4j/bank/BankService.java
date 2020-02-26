@@ -19,14 +19,8 @@ public class BankService {
      */
     public void addAccount(String passport, Account account) {
         List<Account> accounts = users.get(findByPassport(passport));
-        boolean checkForExist = true;
-        for (Account acc : accounts) {
-            if (account.equals(acc)) {
-                checkForExist = false;
-                break;
-            }
-        }
-        if (checkForExist) {
+        boolean checkForExist = accounts.contains(account);
+        if (!checkForExist) {
             accounts.add(account);
             users.put(findByPassport(passport), accounts);
         }
@@ -43,7 +37,7 @@ public class BankService {
                 return user;
             }
         }
-        return null;
+        throw new NullPointerException("A client with this passport number does not exist");
     }
 
     /**
