@@ -18,11 +18,13 @@ public class BankService {
      * @param account Аккаунт.
      */
     public void addAccount(String passport, Account account) {
-        List<Account> accounts = users.get(findByPassport(passport));
-        boolean checkForExist = accounts.contains(account);
-        if (!checkForExist) {
-            accounts.add(account);
-            users.put(findByPassport(passport), accounts);
+        if (findByPassport(passport) != null) {
+            List<Account> accounts = users.get(findByPassport(passport));
+            boolean checkForExist = accounts.contains(account);
+            if (!checkForExist) {
+                accounts.add(account);
+                users.put(findByPassport(passport), accounts);
+            }
         }
     }
 
@@ -37,7 +39,7 @@ public class BankService {
                 return user;
             }
         }
-        throw new NullPointerException("A client with this passport number does not exist");
+        return null;
     }
 
     /**
@@ -45,6 +47,9 @@ public class BankService {
      * @return подошедщий аккаунт или null (если не нашел).
      */
     public Account findByRequisite(String passport, String requisite) {
+        if (findByPassport(passport) == null) {
+            return null;
+        }
         List<Account> accounts = users.get(findByPassport(passport));
         for (Account acc : accounts) {
             if (requisite.equals(acc.getRequisite())) {
@@ -63,6 +68,9 @@ public class BankService {
      */
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
+        if (findByRequisite(srcPassport, srcRequisite) == null || findByRequisite(destPassport, destRequisite) == null) {
+            return false;
+        }
         Account srcAccount = findByRequisite(srcPassport, srcRequisite);
         Account destAccount = findByRequisite(destPassport, destRequisite);
         boolean rsl = srcAccount != null && destAccount != null && amount <= srcAccount.getBalance();
