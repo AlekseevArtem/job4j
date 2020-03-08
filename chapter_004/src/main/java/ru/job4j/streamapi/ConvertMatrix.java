@@ -1,29 +1,18 @@
 package ru.job4j.streamapi;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+
 import java.util.stream.Collectors;
 
 public class ConvertMatrix {
-    public static void main(String[] args) {
-        int[][] matrixInt = {
-                {1, 2, 3, 4},
-                {5, 6, 7, 8},
-                {9, 10, 11, 12},
-                {13, 14, 15, 16}
-        };
+    static List<Integer> convert(Integer[][] matrixInt) {
         List<List<Integer>> matrix = new ArrayList<>();
-        for (int[] mat: matrixInt) {
-            List<Integer> temp = new ArrayList<>();
-            for (int m : mat) {
-                temp.add(m);                                                
-            }
-            matrix.add(temp);
+        for (Integer[] mat: matrixInt) {
+            matrix.add(new ArrayList<>(Arrays.asList(mat)));
         }
-        System.out.println(
-                matrix.stream().flatMap(Collection::stream).collect(Collectors.toList())
-        );
-
+        return matrix.stream().flatMap(Collection::stream).collect(Collectors.toList());
     }
 }
