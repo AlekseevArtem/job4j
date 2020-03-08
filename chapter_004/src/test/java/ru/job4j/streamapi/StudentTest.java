@@ -3,10 +3,7 @@ package ru.job4j.streamapi;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.hamcrest.core.Is.is;
 
@@ -28,6 +25,16 @@ public class StudentTest {
 
             }
         };
+        Assert.assertThat(result, is(expect));
+    }
+
+    @Test
+    public void levelOf() {
+        List<Student> result = Student.levelOf(attachments, 70);
+        List<Student> expect = Arrays.asList(
+                new Student("Ivanov", "KH - 17", 34),
+                new Student("Sidorov", "KH - 17", 67)
+        );
         Assert.assertThat(result, is(expect));
     }
 }

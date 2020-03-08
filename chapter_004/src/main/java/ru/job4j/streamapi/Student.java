@@ -1,11 +1,13 @@
 package ru.job4j.streamapi;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class Student {
+public class Student implements Comparable<Student> {
     private String surname;
     private String group;
     private int score;
@@ -46,6 +48,15 @@ public class Student {
 
     static Map<String, Student> collect(List<Student> students) {
         return students.stream().distinct().collect(Collectors.toMap(Student::getSurname, e -> e));
+    }
+
+    static List<Student> levelOf(List<Student> students, int bound) {
+        return students.stream().sorted(Comparator.naturalOrder()).distinct().flatMap(Stream::ofNullable).takeWhile(v -> v.getScore() < bound).collect(Collectors.toList());
+    }
+
+    @Override
+    public int compareTo(Student another) {
+        return Integer.compare(score, another.score);
     }
 
     @Override
