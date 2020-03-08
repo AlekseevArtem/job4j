@@ -1,13 +1,22 @@
 package ru.job4j.streamapi;
 
-import ru.job4j.lambda.Attachment;
-
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Student {
+    private String surname;
+    private String group;
     private int score;
 
     public Student(int score) {
+        this.score = score;
+    }
+
+    public Student(String surname, String group, int score) {
+        this.surname = surname;
+        this.group = group;
         this.score = score;
     }
 
@@ -17,6 +26,26 @@ public class Student {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
+    static Map<String, Student> collect(List<Student> students) {
+        return students.stream().distinct().collect(Collectors.toMap(Student::getSurname, e -> e));
     }
 
     @Override
@@ -33,11 +62,13 @@ public class Student {
             return false;
         }
         Student stud = (Student) o;
-        return Objects.equals(score, stud.score);
+        return Objects.equals(score, stud.score)
+                && Objects.equals(group, stud.group)
+                && Objects.equals(surname, stud.surname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(score);
+        return Objects.hash(surname);
     }
 }
