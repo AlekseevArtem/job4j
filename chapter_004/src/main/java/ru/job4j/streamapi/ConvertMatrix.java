@@ -1,7 +1,6 @@
 package ru.job4j.streamapi;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -11,7 +10,11 @@ public class ConvertMatrix {
     static List<Integer> convert(Integer[][] matrixInt) {
         List<List<Integer>> matrix = new ArrayList<>();
         for (Integer[] mat: matrixInt) {
-            matrix.add(new ArrayList<>(Arrays.asList(mat)));
+            List<Integer> list = new ArrayList<>();
+            for (Integer integer: mat) {
+                list.add(integer);
+            }
+            matrix.add(list);
         }
         return matrix.stream().flatMap(Collection::stream).collect(Collectors.toList());
     }
