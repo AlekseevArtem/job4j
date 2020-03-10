@@ -23,7 +23,6 @@ public class BankService {
             List<Account> accounts = users.get(user);
             if (!accounts.contains(account)) {
                 accounts.add(account);
-                users.replace(user, accounts);
             }
         }
     }
