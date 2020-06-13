@@ -1,13 +1,13 @@
 package ru.job4j.tracker;
 
-public class ExitAction implements UserAction {
-    @Override
-    public String name() {
-        return "=== Exit ====";
+public class ExitAction {
+    private final Callback callback;
+
+    public ExitAction(Callback callback) {
+        this.callback = callback;
     }
 
-    @Override
-    public boolean execute(Input input, Tracker tracker) {
-        return false;
+    public void check(int exit) {
+        callback.execute(exit);
     }
 }

@@ -3,12 +3,18 @@ package ru.job4j.tracker;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StartUI {
+public class StartUI implements Callback {
+    private boolean run = true;
+    private ExitAction exit = new ExitAction(this);
+
     public void init(Input input, Tracker tracker, List<UserAction> actions) {
-        boolean run = true;
         while (run) {
             this.showMenu(actions);
-            int select = input.askInt("Select: ", actions.size());
+            int select = input.askInt("Select: ", actions.size() + 1);
+            exit.check(select);
+            if (!run) {
+                break;
+            }
             UserAction action = actions.get(select);
             run = action.execute(input, tracker);
         }
@@ -33,7 +39,12 @@ public class StartUI {
                 actions.add(new DeleteAction());
                 actions.add(new FindActionByID());
                 actions.add(new FindActionByName());
-                actions.add(new ExitAction());
         new StartUI().init(validate, tracker, actions);
+    }
+
+    @Override
+    public void execute(int message) {
+        Integer six = 6;
+        run = !six.equals(message);
     }
 }
