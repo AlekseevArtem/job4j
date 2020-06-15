@@ -5,9 +5,9 @@ import java.util.List;
 
 public class StartUI implements Callback {
     private boolean run = true;
-    private ExitAction exit = new ExitAction(this);
 
     public void init(Input input, Tracker tracker, List<UserAction> actions) {
+        ExitAction exit = new ExitAction(this);
         while (run) {
             this.showMenu(actions);
             int select = input.askInt("Select: ", actions.size() + 1);
